@@ -8,7 +8,7 @@
 This project tries to find out what a real claw machine entails, be either a big one to unload cargo ships or a small one that one may find at a festival.<br> "What challenges does a claw machine face?", "How do you go about to solve them?", basically, "How _do_ it work?".
 These and many other were the questions we had in mind when we decided to start to work on this project.
 
-Due to our limited budget, we had to build an even limited machine which, unfortunatly, is not fit for harbor work. Nor festival work. But we believe that we learned a lot anyway.
+Due to our limited resources and time, we had to build an even limited machine which, unfortunatly, is not fit for harbor work. Nor festival work. But we believe that we learned a lot anyway.
 
 # Requirements
 
@@ -21,9 +21,10 @@ To use this project, you will need the following hardware:
 - Bluetooth modules:
   - 1x HC-05
   - 1x HC-06
-- Metal bars (enough to make a 40x40x30cm frame, a 10x40cm cart and a 10x10 frame for the claw to hang on) #todo to measure
-- 6x Stepper motors
-- 4x Wheels to make the cart move
+- Metal bars (enough to make a 50x50x30cm frame, a 10x50cm cart and a 10x10 frame for the claw to hang on)
+- 5x Stepper motors
+- 5x Stepper motors' driver
+- 8x Wheels to make the cart move on 2 axis
 - Jumper wires
 - [Claw Grabber](https://www.thingiverse.com/thing:4826548/files)
 - 1x Servo motor
@@ -47,9 +48,9 @@ To use this project, you will need the following hardware:
 ├── readme_assets              # Images used in the readme
 ├── source
 │    ├── Bluetooth             # Manages bluetooth connection
-│    ├── motors                # ImmortalThreads runtime library
-│    ├── joystick              # ImmortalThreads runtime library
-│    ├── screen                # ImmortalThreads runtime library
+│    ├── Controller            # Manages the boosterpack and the state of the machine
+│    ├── Graphics              # Writes to the screen
+│    ├── MotorDriver           # TODO
 │    └── ...
 └── presentation.pdf           # Slide presentation
 ```
@@ -61,13 +62,28 @@ To use this project, you will need the following hardware:
 1. Build the frame, as well as everything the rest. TODO
 2. Connect the various components as follows:
    - Connect the **BoosterPack MKII** to the **MSP432P401R Launchpad**.
-   - **Bluetooth setup**
-     - Connect the **HC-05**'s wires to the GND and 5V for power and to PIN 3.2(as the reciever, RXD) and PIN 3.3(as the transmitter, TXD), re of the board that is mounted on the machine
-     - Connect the **HC-06**'s wires to the GND and 5V for power and to PIN 3.2(as the reciever, RXD) and PIN 3.3(as the transmitter, TXD) of the board that will function as a hand-held controller
-   - **MOTOR SETUP**
-     - todo
-   - **CLAW SETUP**
-     - todo
+   - Bluetooth setup
+     - **HC-05** Configuration
+       - Connect it to the hand-held controller.
+         - Connect the HC-05 to a GND and a 5V pins of the board.
+         - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
+       - Send it the following AT commands:
+         - `AT+ROLE=1`
+         - `AT+CMODE=1`
+         - `AT+UART=9600,0,0`
+         - `AT+PSWD=1234`
+     - **HC-06** Configuration:
+       - Connect it to the machine.
+         - Connect the HC-06 to a GND and a 5V pins of the board.
+         - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
+       - Send it the following AT commands:
+         - `AT+BAUD4`
+         - `AT+PIN1234`
+
+- **MOTOR SETUP**
+  - todo
+- **CLAW SETUP**
+  - todo
 
 ### Setting up the software
 

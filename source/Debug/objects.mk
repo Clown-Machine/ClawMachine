@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -llibc.a -l"C:/Users/HUAWEI/Desktop/msp432Library/source/ti/devices/msp432p4xx/driverlib/ccs/msp432p4xx_driverlib.lib"
+LIBS := -l"C:/Users/betto/Desktop/driverLib/source/ti/devices/msp432p4xx/driverlib/ccs/msp432p4xx_driverlib.lib" -l"C:/Users/betto/Desktop/driverLib/source/ti/grlib/lib/ccs/m4/grlib.a" -llibc.a
 

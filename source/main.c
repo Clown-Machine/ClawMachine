@@ -10,6 +10,7 @@
 #include "cart.h"
 #include "claw_machine.h"
 #include "config.h"
+#include "Controller/include/ControllerSetup.h"
 
 // statics
 
@@ -32,6 +33,22 @@ void main(void)
     //Settings();
     ///////////////
 
+    /* initialize timers */
+    hwInit();
+    timerInit();
+
+    /* initialize buttons */
+    buttonInit();
+
+    /* initialize LED */
+    ledInit();
+
+    // initialize screen
+    _screenInit();
+
+    /* initialize joystick */
+    joystickInit();
+
     init();
 
     printf("start\n");
@@ -42,12 +59,11 @@ void main(void)
         //__sleep();
 
         uint8_t command[1];
-            ReadFromBlueTooth(command);
+        ReadFromBlueTooth(command);
 
-            //printf("commando: %u\n",command[0]);
-            InterpretCommand(command[0], &clawMachine);
-
-
+        //printf("commando: %u\n",command[0]);
+        InterpretCommand(command[0], &clawMachine);
+        Controller();
     }
 }
 
@@ -77,14 +93,19 @@ void configureMainLoopTimer_ContinuoiusMode()
 void init()
 {
     Cart_t cart_a = Cart_INIT(
-        Stepper_INIT(CART_A_DX_IN1, CART_A_DX_IN2, CART_A_DX_IN3, CART_A_DX_IN4),
-        Stepper_INIT(CART_A_SX_IN1, CART_A_SX_IN2, CART_A_SX_IN3, CART_A_SX_IN4));
+            Stepper_INIT(CART_A_DX_IN1, CART_A_DX_IN2, CART_A_DX_IN3,
+                         CART_A_DX_IN4),
+            Stepper_INIT(CART_A_SX_IN1, CART_A_SX_IN2, CART_A_SX_IN3,
+                         CART_A_SX_IN4));
 
     Cart_t cart_b = Cart_INIT(
-        Stepper_INIT(CART_B_DX_IN1, CART_B_DX_IN2, CART_B_DX_IN3, CART_B_DX_IN4),
-        Stepper_INIT(CART_B_SX_IN1, CART_B_SX_IN2, CART_B_SX_IN3, CART_B_SX_IN4));
+            Stepper_INIT(CART_B_DX_IN1, CART_B_DX_IN2, CART_B_DX_IN3,
+                         CART_B_DX_IN4),
+            Stepper_INIT(CART_B_SX_IN1, CART_B_SX_IN2, CART_B_SX_IN3,
+                         CART_B_SX_IN4));
 
-    Stepper_t whinch = Stepper_INIT(WHINCH_IN1, WHINCH_IN2, WHINCH_IN3, WHINCH_IN4);
+    Stepper_t whinch = Stepper_INIT(WHINCH_IN1, WHINCH_IN2, WHINCH_IN3,
+                                    WHINCH_IN4);
 
     clawMachine = Claw_INIT(cart_a, cart_b, whinch);
 
@@ -103,7 +124,8 @@ void init()
 // stepper motor control loop
 void TA1_0_IRQHandler(void)
 {
-    Timer_A_clearCaptureCompareInterrupt(TIMER_A1_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0);
+    Timer_A_clearCaptureCompareInterrupt(TIMER_A1_BASE,
+                                         TIMER_A_CAPTURECOMPARE_REGISTER_0);
 
 //    uint8_t command[1];
 //    ReadFromBlueTooth(command);

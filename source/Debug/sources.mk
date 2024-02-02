@@ -114,4 +114,8 @@ SUBDIRS := \
 . \
 BlueTooth/BluetoothLib \
 BlueTooth/Hardware \
+Controller \
+Graphics/LcdDriver \
+Graphics \
+Graphics/images \
 
