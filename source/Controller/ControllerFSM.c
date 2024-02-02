@@ -81,9 +81,6 @@ void fn_SELECT_MODE(){
 
 void fn_SCREEN_MODE(){
     // based on x and y values set direction and velocity of vertical movement and gripper
-    // screenMoveUp() per andare sopra
-    // screenMoveDown() per andare sotto
-    // screenMenuPosition per disegnare selezione
 
     // moving in the screen based on resutsBuffer[1]
     uint16_t y_value = resultsBuffer[1];

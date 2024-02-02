@@ -63,6 +63,7 @@ main.obj: C:/ti/ccs1240/ccs/ccs_base/arm/include/msp.h
 main.obj: C:/Users/betto/Desktop/ClawMachine/source/servo.h
 main.obj: C:/Users/betto/Desktop/ClawMachine/source/config.h
 main.obj: ../Controller/include/ControllerSetup.h
+main.obj: ../Graphics/default_screens.h
 
 ../main.c:
 
@@ -189,4 +190,6 @@ C:/Users/betto/Desktop/ClawMachine/source/servo.h:
 C:/Users/betto/Desktop/ClawMachine/source/config.h:
 
 ../Controller/include/ControllerSetup.h:
+
+../Graphics/default_screens.h:
 

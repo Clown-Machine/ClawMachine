@@ -22,34 +22,6 @@ typedef enum TextMode
     LEFT, CENTERED
 } textmode_t;
 
-//List of available colors
-typedef enum Colors
-{
-    Aqua = GRAPHICS_COLOR_AQUA,
-    Blue = GRAPHICS_COLOR_BLUE,
-    Cyan = GRAPHICS_COLOR_CYAN,
-    DarkGray = GRAPHICS_COLOR_DARK_GRAY,
-    DarkGreen = GRAPHICS_COLOR_DARK_GREEN,
-    DarkMagenta = GRAPHICS_COLOR_DARK_MAGENTA,
-    DarkRed = GRAPHICS_COLOR_DARK_RED,
-    Turquoise = GRAPHICS_COLOR_DARK_TURQUOISE,
-    Gold = GRAPHICS_COLOR_GOLD,
-    Gray = GRAPHICS_COLOR_GRAY,
-    Green = GRAPHICS_COLOR_GREEN,
-    Indigo = GRAPHICS_COLOR_INDIGO,
-    Lime = GRAPHICS_COLOR_LIME,
-    Pink = GRAPHICS_COLOR_PINK,
-    Purple = GRAPHICS_COLOR_PURPLE,
-    Red = GRAPHICS_COLOR_RED,
-    Sienna = GRAPHICS_COLOR_SIENNA,
-    Snow = GRAPHICS_COLOR_SNOW,
-    Tomato = GRAPHICS_COLOR_TOMATO,
-    White = GRAPHICS_COLOR_WHITE,
-    Yellow = GRAPHICS_COLOR_YELLOW,
-    Black = GRAPHICS_COLOR_BLACK
-} colors_t;
-
-
 //Limits value on the Horizontal axis from 0 to SCREEN_WIDTH
 uint8_t clampX(uint8_t x)
 {
@@ -96,41 +68,14 @@ void _graphicsInit()
                          &g_sCrystalfontz128x128_funcs);
 
     /* Initializes screen parameters*/
-    Graphics_setForegroundColor(&g_sContext, White);
-    Graphics_setBackgroundColor(&g_sContext, Black);
+    Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_WHITE);
+    Graphics_setBackgroundColor(&g_sContext, GRAPHICS_COLOR_BLACK);
     GrContextFontSet(&g_sContext, &g_sFontFixed6x8);
 
     /* Clears screen*/
     Graphics_clearDisplay(&g_sContext);
 #endif
 }
-
-/*
- * Sets color of everything that is going to be written or drawn to the screen
- * ! Parameters:
- * color: Color to be set as foreground
- */
-void setForegroundColor(colors_t color)
-{
-#ifndef SCREEN_MANAGER_INITIALIZED
-    _graphicsInit();
-#endif
-    Graphics_setForegroundColor(&g_sContext, color);
-}
-
-/*
- * Sets color of background
- * * ! Parameters:
- * color: Color to be set as background
- */
-void setBackgroundColor(colors_t color)
-{
-#ifndef SCREEN_MANAGER_INITIALIZED
-    _graphicsInit();
-#endif
-    Graphics_setBackgroundColor(&g_sContext, color);
-}
-
 /*
  * Clears everything from the screen
  */
@@ -142,6 +87,23 @@ void cleanScreen()
     Graphics_clearDisplay(&g_sContext);
 }
 
+void blackenArea(uint8_t x, uint8_t y, uint8_t w, uint8_t h){
+
+#ifndef SCREEN_MANAGER_INITIALIZED
+    _graphicsInit();
+#endif
+    x = clampX(x);
+    y = clampY(x);
+    uint8_t clamppedWidth = clampX(x+w);
+    uint8_t clamppedHeight = clampY(y+h);
+
+    tRectangle area = { x, y, clamppedWidth, clamppedHeight};
+
+    Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_BLACK);
+    Graphics_drawRectangle(&g_sContext, &area);
+    Graphics_fillRectangle(&g_sContext, &area);
+    Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_WHITE);
+}
 /*
  * Writes a centered text at some (x,y) coordinates
  *

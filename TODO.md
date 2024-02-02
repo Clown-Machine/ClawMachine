@@ -1,13 +1,11 @@
-1. finish readme 
+1. finish readme
 2. powerpoint
 3. youtube video
 4. blueooth interaction with motors
-5. joystick interaction with blueooth
-6. joystick interaction with menu
+5. check if merge controller/screen is done correctly
+6. check if merge controller/bluetooth is done correctly
 7. saved positions
 8. Debug/tests
-
-
 
 # Project Evaluation
 

@@ -11,6 +11,7 @@
 #include "claw_machine.h"
 #include "config.h"
 #include "Controller/include/ControllerSetup.h"
+#include "Graphics/default_screens.h"
 
 // statics
 
@@ -28,9 +29,9 @@ void main(void)
     // bluetooth initialization
     BlueToothHardwareInit();
 
-    //MAP_Interrupt_enableMaster();
+    // MAP_Interrupt_enableMaster();
 
-    //Settings();
+    // Settings();
     ///////////////
 
     /* initialize timers */
@@ -52,7 +53,7 @@ void main(void)
     init();
 
     printf("start\n");
-
+    screenBluetoothPairing(); // todo check for B1 pressed
     while (1)
     {
 
@@ -61,7 +62,7 @@ void main(void)
         uint8_t command[1];
         ReadFromBlueTooth(command);
 
-        //printf("commando: %u\n",command[0]);
+        // printf("commando: %u\n",command[0]);
         InterpretCommand(command[0], &clawMachine);
         Controller();
     }
@@ -93,16 +94,16 @@ void configureMainLoopTimer_ContinuoiusMode()
 void init()
 {
     Cart_t cart_a = Cart_INIT(
-            Stepper_INIT(CART_A_DX_IN1, CART_A_DX_IN2, CART_A_DX_IN3,
-                         CART_A_DX_IN4),
-            Stepper_INIT(CART_A_SX_IN1, CART_A_SX_IN2, CART_A_SX_IN3,
-                         CART_A_SX_IN4));
+        Stepper_INIT(CART_A_DX_IN1, CART_A_DX_IN2, CART_A_DX_IN3,
+                     CART_A_DX_IN4),
+        Stepper_INIT(CART_A_SX_IN1, CART_A_SX_IN2, CART_A_SX_IN3,
+                     CART_A_SX_IN4));
 
     Cart_t cart_b = Cart_INIT(
-            Stepper_INIT(CART_B_DX_IN1, CART_B_DX_IN2, CART_B_DX_IN3,
-                         CART_B_DX_IN4),
-            Stepper_INIT(CART_B_SX_IN1, CART_B_SX_IN2, CART_B_SX_IN3,
-                         CART_B_SX_IN4));
+        Stepper_INIT(CART_B_DX_IN1, CART_B_DX_IN2, CART_B_DX_IN3,
+                     CART_B_DX_IN4),
+        Stepper_INIT(CART_B_SX_IN1, CART_B_SX_IN2, CART_B_SX_IN3,
+                     CART_B_SX_IN4));
 
     Stepper_t whinch = Stepper_INIT(WHINCH_IN1, WHINCH_IN2, WHINCH_IN3,
                                     WHINCH_IN4);
@@ -127,11 +128,11 @@ void TA1_0_IRQHandler(void)
     Timer_A_clearCaptureCompareInterrupt(TIMER_A1_BASE,
                                          TIMER_A_CAPTURECOMPARE_REGISTER_0);
 
-//    uint8_t command[1];
-//    ReadFromBlueTooth(command);
-//
-//    //printf("commando: %u\n",command[0]);
-//    InterpretCommand(command[0], &clawMachine);
+    //    uint8_t command[1];
+    //    ReadFromBlueTooth(command);
+    //
+    //    //printf("commando: %u\n",command[0]);
+    //    InterpretCommand(command[0], &clawMachine);
 
     Claw_tryMove(&clawMachine);
 }
