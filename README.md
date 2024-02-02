@@ -1,6 +1,6 @@
 # Claw Machine
 
-This project tries to find out what a real claw machine entails, be either a big one to unload cargo ships or a small one that one may find at a festival. "What challenges does a claw machine face?", "How do you go about to solve them?", basically, "How do it work?". These and many other were the questions we had in mind when we decided to start to work on this project.
+This project tries to find out what a real claw machine entails, be either a big one to unload cargo ships or a small one that one may find at a festival. "What challenges does a claw machine face?", "How do you go about to solve them?", basically, "How _do_ it work?". These and many other were the questions we had in mind when we decided to start to work on this project.
 
 Due to our limited budget, we built an even limited one which, unfortunatly, is not fit for harbor work. Nor festival work. But we believe that we learned a lot anyway.
 
@@ -39,8 +39,8 @@ To use this project, you will need the following hardware:
 │    ├── images                # Images used in the readme
 │    └── STL                   # STLs to 3D print to mount circuit boards on the machine
 ├── source
+│    ├── Bluetooth             # Manages bluetooth connection
 │    ├── motors                # CMake toolchains for cross-compiling
-│    ├── bluetooth             # ImmortalThreads runtime library
 │    ├── joystick              # ImmortalThreads runtime library
 │    ├── screen                # ImmortalThreads runtime library
 │    └── ...                   # Test applications

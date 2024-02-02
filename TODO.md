@@ -1,3 +1,14 @@
+1. finish readme 
+2. powerpoint
+3. youtube video
+4. blueooth interaction with motors
+5. joystick interaction with blueooth
+6. joystick interaction with menu
+7. saved positions
+8. Debug/tests
+
+
+
 # Project Evaluation
 
 - Max 15mins
