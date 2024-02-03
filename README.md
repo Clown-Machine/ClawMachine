@@ -118,7 +118,7 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
            - Up: raise the gripper
            - Down: lower the gripper
            - Left: close the gripper
-           - Right: open the gripper
+           - Right: open the gripper\n
            Click the Joystick Pushbutton again to move the claw machine horizontally.
          - Click Button 2 (second button on the right) to select on the screen the slot where you wish to save the position you just reached in the claw machine. Click Button 2 again to overwrite the slot and then Button 1 to go back to Manual movement mode.
        - Automatic:
