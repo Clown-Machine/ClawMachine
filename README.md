@@ -110,15 +110,27 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
 1. Follow the instruction displayed on the screen.
 2. Keep in mind:
    [TODO Finite State Machine]
-   Starting up the controller may take some time as the device must connect itself to the claw machine through a Bluetooth connection. Wait for the LED on both devices to stop blinking.
-   - Click Button 1 (the first button on the right) to enter manual movement mode. You will be able to move the cart og the claw machine horizontally by moving the joystick: left, right, back and forth.
-   - Click the Joystick Pushbutton to change the movement into vertical mode. Moving the joystick around you will be able to move the gripper as you like:
-       - Up: raise the gripper
-       - Down: lower the gripper
-       - Left: close the gripper
-       - Right: open the gripper
-   
-4. have fun!
+   Starting up the controller may take some time as the device must connect itself to the claw machine through a Bluetooth connection. Wait for the LEDs on both devices to stop blinking.
+   - Click Button 1 (first button on the right) to interchange between Manual and Automatic movement mode.
+       - Manual:
+         - You will be able to move the cart on the claw machine horizontally by moving the joystick: left, right, back and forth.
+         - Click the Joystick Pushbutton to change movement to vertical mode. By moving the joystick around, you will be able to move the gripper as you like:
+           - Up: raise the gripper
+           - Down: lower the gripper
+           - Left: close the gripper
+           - Right: open the gripper
+         -Click the Joystick Pushbutton to interchange between horizontal and vertical movement.
+         - Click Button 2 (second button on the right) to select on the screen the slot where you wish to save the position you just reached in the claw machine. Click Button 2 again to overwrite the slot and then Button 1 to go back to Manual movement mode.
+       - Automatic:
+         - The positions you reached and saved previously in Manual movement mode will appear on the screen. You can now select the position you want by moving up and down with the joystick and by clicking Button 2. The claw machine will automatically get into the desired position. (Operation not implemented yet)
+4. Have fun!
+
+<p align="center">
+  <img src="readme_assets/ClawMachineFSM.png" width="325" height="240" alt="FSM1">
+</p>
+<p align="center">
+  <img src="readme_assets/ClawMachine_MovementFSM" width="325" height="240" alt="MovementeFSM">
+</p>
 
 # Link to powerpoint and Youtube video
 
@@ -127,13 +139,13 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
 
 # Team members
 
-The project was a developed in a team and the code was divided into many different areas (Claw, Communications, Graphics, Hardware, ...); each member concentrated therefore only on certain aspects of the project.
+The project was a developed in a team and the code was divided into many different areas (Claw, Communications, Graphics, Hardware, ...); each member focused therefore only on certain aspects of the project.
 
 - Luca Podavini (Leader)
-  - Contributed to the creation of the physical machine and of it's control
+  - Contributed mainly to the creation of the physical claw machine and the control module of each motor, synchronizing the movements of the main cart, secondary cart and the gripper.
 - Alberto Cimmino
-  - Contributed to the graphics and the comunication, be either the Bluetooth one or the GitHub one and to the tests
+  - Contributed mainly to the GUI of the controller and Bluetooth comunication between the controller and the claw machine. He was responsible of merging the various project modules, reviewing the code and testing phase.
 - Angela Hu
-  - Contributed to the control of the machine thanks to the read of the Booster pack features
+  - Contributed mainly to the implementation of the controller, setting it up, handling its functionalities and dealing with the logic of the system control flow.
 - Sara Tait
-  - Contributed to the comunication, the control and the tests
+  - Contributed mainly to the Bluetooth comunication module, management of the wireless control of the claw machine movements and to testing phase.
