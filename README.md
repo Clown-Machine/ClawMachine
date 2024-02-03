@@ -126,10 +126,10 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
 4. Have fun!
 
 <p align="center">
-  <img src="readme_assets/ClawMachineFSM.png" width="1725" height="1093" alt="FSM1">
+  <img src="readme_assets/ClawMachineFSM.png" width="474" height="300" alt="FSM1">
 </p>
 <p align="center">
-  <img src="readme_assets/ClawMachine_MovementFSM.png" width="1920" height="1211" alt="MovementeFSM">
+  <img src="readme_assets/ClawMachine_MovementFSM.png" width="536" height="333" alt="MovementeFSM">
 </p>
 
 # Link to powerpoint and Youtube video
