@@ -118,12 +118,19 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
            - Up: raise the gripper
            - Down: lower the gripper
            - Left: close the gripper
-           - Right: open the gripper\n
-           Click the Joystick Pushbutton again to move the claw machine horizontally.
+           - Right: open the gripper
+         -Click the Joystick Pushbutton to interchange between horizontal and vertical movement.
          - Click Button 2 (second button on the right) to select on the screen the slot where you wish to save the position you just reached in the claw machine. Click Button 2 again to overwrite the slot and then Button 1 to go back to Manual movement mode.
        - Automatic:
          - The positions you reached and saved previously in Manual movement mode will appear on the screen. You can now select the position you want by moving up and down with the joystick and by clicking Button 2. The claw machine will automatically get into the desired position. (Operation not implemented yet)
 4. Have fun!
+
+<p align="center">
+  <img src="readme_assets/ClawMachineFSM.png" width="325" height="240" alt="FSM1">
+</p>
+<p align="center">
+  <img src="readme_assets/ClawMachine_MovementFSM" width="325" height="240" alt="MovementeFSM">
+</p>
 
 # Link to powerpoint and Youtube video
 
