@@ -5,7 +5,7 @@
 
 ---
 
-This project tries to find out what a real claw machine entails, be either a big one to unload cargo ships or a small one that one may find at a festival.<br> "What challenges does a claw machine face?", "How do you go about to solve them?", basically, "How _do_ it work?".
+This project tries to find out what a real claw machine entails, be either a big one to unload cargo ships or a small one that one may find at a festival.<br> "What challenges does a claw machine face?", "How do you go about to solve them?", basically, "How _does_ it work?".
 These and many other were the questions we had in mind when we decided to start to work on this project.
 
 Due to our limited resources and time, we had to build an even limited machine which, unfortunatly, is not fit for harbor work. Nor festival work. But we believe that we learned a lot anyway.
@@ -108,9 +108,17 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
 # User guide
 
 1. Follow the instruction displayed on the screen.
-2. keep in mind this:
+2. Keep in mind:
    [TODO Finite State Machine]
-3. have fun!
+   Starting up the controller may take some time as the device must connect itself to the claw machine through a Bluetooth connection. Wait for the LED on both devices to stop blinking.
+   - Click Button 1 (the first button on the right) to enter manual movement mode. You will be able to move the cart og the claw machine horizontally by moving the joystick: left, right, back and forth.
+   - Click the Joystick Pushbutton to change the movement into vertical mode. Moving the joystick around you will be able to move the gripper as you like:
+       - Up: raise the gripper
+       - Down: lower the gripper
+       - Left: close the gripper
+       - Right: open the gripper
+   
+4. have fun!
 
 # Link to powerpoint and Youtube video
 
