@@ -89,16 +89,6 @@ void buttonInit(){
     Interrupt_enableInterrupt(INT_PORT4);
 }
 
-//void ledInit(){
-//    /* configure P2.0, P2.1 and P2.2 as GPIO - output */
-//    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0);
-//    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN1);
-//    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN2);
-//    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN0);
-//    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN1);
-//    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN2);
-//}
-
 void controllerInit(){
     hwInit();
     timerInit();
