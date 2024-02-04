@@ -21,20 +21,37 @@ To use this project, you will need the following hardware:
 - Bluetooth modules:
   - 1x HC-05
   - 1x HC-06
-- Metal bars (enough to make a 50x50x30cm frame, a 10x50cm cart and a 10x10 frame for the claw to hang on)
-- 5x Stepper motors
-- 5x Stepper motors' driver
-- 8x Wheels to make the cart move on 2 axis
-- Jumper wires
+- 4 aluminium bars 20x20x500mm and 4 aluminium bars 20x20x40mm for the frame;
+- 4 aluminium U profiles 500mm long for the rails of both carts. They should be wide enough to keep the wheels inside and tight enough to keep them driving straight;
+- 4 aluminium L prifiles (50x50x100mm), two aluminm for fixing wheels, motors and rails of both the two carts;
+- 2 smaller aluminium profiles build the smaller cart;
+- 8x wheels
+- a reel for winding the cable;
+- 1x microservo for moving the claw
+- 5x 28BYJ-48 stepper motors
+- 5x ULN2003 stepper motors' driver
+- 5x Motor driver suupports
+- MSP board support
 - [Claw Grabber](https://www.thingiverse.com/thing:4826548/files)
-- 1x Servo motor
+- Jumper wires to connect all motors to the MSP board
 - A rope to connect to the claw
+- a 5V - 2A power supply (we used a USB cable connected to a powerbank)
+
+The construction of the chassis and its dimensions do not directly affect the software, it can be built following the weight, transportability and strength requirements of the specific project. The important thing is to pay attention to the weight of the moving parts since the 28BYJ-48 motors are not that powerful. In case they can be replaced with another model but some parts of the program may need to be modified.
+
+In our specific case, the frame was designed to be disassembled and reassembled in a short time and especially to take up little space and be transported easily. Aluminum was also used to make the structure lighter but at the same time very durable. In particular, the legs of the frame can be folded inward making the entire frame flat, while the trolleys rest on rails and can be removed by disconnecting the cables with quick-release connectors.
+
+The electronic part, on the other hand, consists of two separate circuits: one for powering the motors and the other for the signals sent from the MSP432 board to the various peripherals: stepper, servo, and Bluetooth. The two circuits share the grounding part.
+
+Each stepper motor is connected to its ULN2003 driver that allows it to interface with the MSP board. Specifically, this driver has 6 connections: 5V and GND from the power supply and 4 input pins to control its motion.
+
+The servo, on the other hand, is controlled by PWM so it is connected to the power supply with the 5V and GND pins and to the board with only one input pin.
 
 <p float="left">
   <img src="readme_assets/msp432p401r.png" alt="msp432p401r" width="140" height="225">
   <img src="readme_assets/boosterpack.png" alt="boosterpack" width="350" height="175">
 </p>
-  
+
 ### Software
 
 - [Code Composer Studio](https://www.ti.com/tool/CCSTUDIO) Integrated Development Environment (IDE)
@@ -81,10 +98,10 @@ To use this project, you will need the following hardware:
          - Connect the HC-06 to a GND and a 5V pins of the board.
          - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
 
-- **MOTOR SETUP**
-  - todo
+- **STEPPER MOTOR SETUP**
+  - connect each motor input to the MSP according to the pin mapping specified in the config.h file. You can also look at the photo below.
 - **CLAW SETUP**
-  - todo
+  - Once the claw is printed and assembled following the instructions in the original project (linked above in the parts list), connect the servo to the power supply and the board on pin 5.7. You may need to change the servo's opening and closing bounds based on how the assembly was done. This can be done by changing the SERVO_MIN_POSITION and SERVO_MAX_POSITION parameters within the config.h file.
 
 ### Setting up the software
 
@@ -96,9 +113,9 @@ git clone https://github.com/Clown-Machine/ClawMachine.git
 
 2. put the right project on the right board
 
-2. Open the project in **Code Composer Studio**.
-3. Go to: _Project → Properties → Build → Arm Compiler → Include Options_ and add the _source_ directory located in _simplelink_msp432p4_sdk_3_40_01_02/_
-4. Go to: _Project → Properties → Build → Arm Linker → File Search Path_ and add:
+3. Open the project in **Code Composer Studio**.
+4. Go to: _Project → Properties → Build → Arm Compiler → Include Options_ and add the _source_ directory located in _simplelink_msp432p4_sdk_3_40_01_02/_
+5. Go to: _Project → Properties → Build → Arm Linker → File Search Path_ and add:
    - _msp432p4xx_driverlib.lib_ directory located in _[..]/source/ti/devices/msp432p4xx/driverlib/ccs/_
    - _grlib.a_ located in _[..]/source/ti/grlib/lib/ccs/m4f/_
    
