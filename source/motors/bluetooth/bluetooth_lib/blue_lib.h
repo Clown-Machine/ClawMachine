@@ -18,7 +18,7 @@
  * Parameters: an uint8_t, the value that has to be transmitted
  */
 void sendToBluetooh(uint8_t buffer);
-// wrapper low-level functions that initializes necessary hardware for UART
+// wrapper for low-level functions that initializes necessary hardware for UART
 void bluetoothHardwareInit();
 void motorSideSettings();
 
@@ -29,7 +29,7 @@ void motorSideSettings();
  */
 void interpretCommand(uint8_t buffer, ClawMachine_t *clawMachine);
 
-/*functions called by InterpretCommand() depending on what mode the machine is
+/*functions called by interpretCommand() depending on what mode the machine is
  * Parameters: values to be interpreted into a command
  */
 void interpretMovement(uint8_t value, ClawMachine_t *clawMachine);

@@ -1,45 +1,45 @@
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include <stdio.h>
 #include "bluetooth_lib/blue_lib.h"
-#include "bluetooth_lib/bit_operations.h"
-#include "hardware/UART_Driver.h"
 #include "msp.h"
+#define DEBUG 1
 
-//int main()
-//{
-//
-//    WDT_A_holdTimer();
-//
-//    BlueToothHardwareInit();
-//
-//    MAP_Interrupt_enableMaster();
-//
-//    Settings();
-//
-//    CheckUART();
-//
-//    printf("Hi\n");
-//    uint8_t  data[1];
-//    data[0] = 1;
-//
-//    uint8_t vel = 65;
-//
-//    //UART_Write(EUSCI_A2_BASE, data, 1);
-//
-//    moveXBackwards(vel);
-////    moveYBackwards(vel);
-////    moveXForward(vel);
-////    moveYForward(vel);
-////
-////    moveGripperUp(vel);
-////    moveGripperDown(vel);
-////
-////    OpenGripper(vel);
-////    CloseGripper(vel);
-////
-////    GoToTarget(3);
-////    SaveTarget(4);
-//
-//
-//    return 0;
-//}
+int main()
+{
+
+    WDT_A_holdTimer();
+
+        BlueToothHardwareInit();
+
+        MAP_Interrupt_enableMaster();
+
+        Settings();
+
+        #if DEBUG
+        uint8_t vel = 65;
+
+        //to efficiently test each command, send one at a time
+        moveXBackwards(vel);
+        moveYBackwards(vel);
+        moveXForward(vel);
+        moveYForward(vel);
+
+        moveGripperUp(vel);
+        moveGripperDown(vel);
+
+        OpenGripper(vel);
+        CloseGripper(vel);
+
+        GoToTarget(0);
+        GoToTarget(1);
+        GoToTarget(2);
+        GoToTarget(3);
+
+        SaveTarget(0);
+        SaveTarget(1);
+        SaveTarget(2);
+        SaveTarget(3);
+        #endif
+
+    return 0;
+}

@@ -1,7 +1,6 @@
 1. finish readme
 2. powerpoint
 3. youtube video
-4. Debug/tests
 
 # Project Evaluation
 
