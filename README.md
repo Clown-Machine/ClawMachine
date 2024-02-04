@@ -6,7 +6,7 @@
 ---
 
 This project tries to find out what a real claw machine entails, be either a big one to unload cargo ships or a small one that one may find at a festival.<br> "What challenges does a claw machine face?", "How do you go about to solve them?", basically, "How _does_ it work?".
-These and many other were the questions we had in mind when we decided to start to work on this project.
+These and many others were the questions we had in mind when we decided to start to work on this project.
 
 Due to our limited resources and time, we had to build an even limited machine which, unfortunatly, is not fit for harbor work. Nor festival work. But we believe that we learned a lot anyway.
 
@@ -58,7 +58,7 @@ The servo, on the other hand, is controlled by PWM so it is connected to the pow
 
 - [Code Composer Studio](https://www.ti.com/tool/CCSTUDIO) Integrated Development Environment (IDE)
 - [MSP432 DriverLib](https://www.ti.com/tool/download/SIMPLELINK-MSP432-SDK/3.40.01.02)
-- UART drivers lib todo
+
 
 # Project layout
 
@@ -131,7 +131,6 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
 
 1. Follow the instruction displayed on the screen.
 2. Keep in mind:
-   [TODO Finite State Machine]
    Starting up the controller may take some time as the device must connect itself to the claw machine through a Bluetooth connection. Wait for the LEDs on both devices to stop blinking.
    - Click Button 1 (first button on the right) to interchange between Manual and Automatic movement mode.
        - Manual:
@@ -144,10 +143,12 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
          -Click the Joystick Pushbutton to interchange between horizontal and vertical movement.
          - Click Button 2 (second button on the right) to select on the screen the slot where you wish to save the position you just reached in the claw machine. Click Button 2 again to overwrite the slot and then Button 1 to go back to Manual movement mode.
        - Automatic:
-         - The positions you reached and saved previously in Manual movement mode will appear on the screen. You can now select the position you want by moving up and down with the joystick and by clicking Button 2. The claw machine will automatically get into the desired position. (Operation not implemented yet)
+         - The positions you reached and saved previously in Manual movement mode will appear on the screen. You can now select the position you want by moving up and down with the joystick and by clicking Button
+           
+2. The claw machine will automatically get into the desired position. (Operation not implemented yet)
 4. Have fun!
 
-5. Testing Note:
+Testing Note:
   - In order to test the proper communication between controller and machine before playing with it, it is possible to compile the project excluding the main.c file and including in its place the file TestMainSlave.c (on the machine) and the file TestMainMaster.c (on the controller), found in the "Testing" directory inside "BlueTooth". Once the test is complete, exclude once again the testing files and include main.c.
 
 <p align="center">
@@ -173,4 +174,4 @@ The project was a developed in a team and the code was divided into many differe
 - Angela Hu
   - Contributed mainly to the implementation of the controller, setting it up, handling its functionalities and dealing with the logic of the system control flow.
 - Sara Tait
-  - Contributed mainly to the Bluetooth comunication module, management of the wireless control of the claw machine movements and to testing phase.
+  - Contributed mainly to the Bluetooth comunication module, command encoding, management of the wireless control of the claw machine movements and to testing phase.
