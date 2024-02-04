@@ -64,21 +64,22 @@ To use this project, you will need the following hardware:
    - Connect the **BoosterPack MKII** to the **MSP432P401R Launchpad**.
    - Bluetooth setup
      - **HC-05** Configuration
-       - Connect it to the hand-held controller.
-         - Connect the HC-05 to a GND and a 5V pins of the board.
-         - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
        - Send it the following AT commands:
          - `AT+ROLE=1`
          - `AT+CMODE=1`
          - `AT+UART=9600,0,0`
          - `AT+PSWD=1234`
+       - Connect it to the hand-held controller.
+         - Connect the HC-05 to a GND and a 5V pins of the board.
+         - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
+       
      - **HC-06** Configuration:
+      - Send it the following AT commands:
+         - `AT+BAUD4`
+         - `AT+PIN1234`
        - Connect it to the machine.
          - Connect the HC-06 to a GND and a 5V pins of the board.
          - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
-       - Send it the following AT commands:
-         - `AT+BAUD4`
-         - `AT+PIN1234`
 
 - **MOTOR SETUP**
   - todo
