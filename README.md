@@ -37,6 +37,11 @@ To use this project, you will need the following hardware:
 - A rope to connect to the claw
 - a 5V - 2A power supply (we used a USB cable connected to a powerbank)
 
+<p float="left">
+  <img src="readme_assets/msp432p401r.png" alt="msp432p401r" width="140" height="225">
+  <img src="readme_assets/boosterpack.png" alt="boosterpack" width="350" height="175">
+</p>
+
 The construction of the chassis and its dimensions do not directly affect the software, it can be built following the weight, transportability and strength requirements of the specific project. The important thing is to pay attention to the weight of the moving parts since the 28BYJ-48 motors are not that powerful. In case they can be replaced with another model but some parts of the program may need to be modified.
 
 In our specific case, the frame was designed to be disassembled and reassembled in a short time and especially to take up little space and be transported easily. Aluminum was also used to make the structure lighter but at the same time very durable. In particular, the legs of the frame can be folded inward making the entire frame flat, while the trolleys rest on rails and can be removed by disconnecting the cables with quick-release connectors.
@@ -47,10 +52,7 @@ Each stepper motor is connected to its ULN2003 driver that allows it to interfac
 
 The servo, on the other hand, is controlled by PWM so it is connected to the power supply with the 5V and GND pins and to the board with only one input pin.
 
-<p float="left">
-  <img src="readme_assets/msp432p401r.png" alt="msp432p401r" width="140" height="225">
-  <img src="readme_assets/boosterpack.png" alt="boosterpack" width="350" height="175">
-</p>
+
 
 ### Software
 
