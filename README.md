@@ -1,6 +1,6 @@
 <h1 align="center">Claw Machine</h1>
 <p align="center">
-  <img src="readme_images/logo.png" width="325" height="240" alt="logo">
+  <img src="readme_images/logo.png" width="310" height="240" alt="logo">
 </p>
 
 ---
@@ -58,27 +58,30 @@ To use this project, you will need the following hardware:
 
 ```
 ├── README.md
-├──SupportsSTL                     # STLs to print for the supports of the boards
+├── SupportsSTL                      # STLs to print for the supports of the boards
 ├── readme_images
-│    └── images                    # Images used in the README
-├── presentation.pdf               # Slide presentation
+│    └── images                      # Images used in the README
+├── presentation.pdf                 # Slide presentation
 └── source
-     ├── Controller                # Everything that is on the controller side
-     │    ├── bluetooth            # Manages bluetooth connection
-     │    ├── Graphics             # Manages all the screen that can be displayed
-     │    ├── include              # Libraries for the FSM
+     ├── Controller                  # Everything that is on the controller side
+     │    ├── bluetooth              # Manages bluetooth connection and its tests
+     │    │    └── BluetoothLibrary  # Libraries bluetooth
+     │    ├── Graphics               # Manages all the screen that can be displayed
+     │    │    ├── Images            # Bitmaps for the images used
+     │    │    └── LcdDriver         # Manages the LCD setup
+     │    ├── include                # Libraries for the FSM
      │    ├── Release
      │    ├── targetConfigs
-     │    ├── ControllerFSM.c      # Controls the FSM
-     │    ├── InterruptHandler.c   # Handles interrupts from the boosterpack
-     │    └── main.c               # Main source code
-     └── motors                    # Manages what is on the machine side
-          ├── bluetooth            # Manages bluetooth connection
-          ├── claw_machine_driver  # Manages claw machine movements
-          │    └── hardware        # Hardware-level libraries to control the motors
-          ├── Debug                # Compiled files
+     │    ├── ControllerFSM.c        # Controls the FSM
+     │    ├── InterruptHandler.c     # Handles interrupts from the boosterpack
+     │    └── main.c                 # Main source code
+     └── motors                      # Manages what is on the machine side
+          ├── bluetooth              # Manages bluetooth connection
+          ├── claw_machine_driver    # Manages claw machine movements
+          │    └── hardware          # Hardware-level libraries to control the motors
+          ├── Debug                  # Compiled files
           ├── targetConfigsv
-          └── main.c               # Main source code
+          └── main.c                 # Main source code
 ```
 
 # Getting started
@@ -86,55 +89,56 @@ To use this project, you will need the following hardware:
 ### Setting up the hardware
 
 1. Build the frame.<br>
+<div>
    Since the chassis' dimensions do not directly affect the software, it can be built following the weight, transportability and strength requirements of the specific project. Since these changes may require some software changes, we will show how we built ours:
 
-<p float="left">
-  <img src="readme_images/folded_frame.jpeg" alt="folded_frame" width="140" height="200">
-  <img src="readme_images/disassembled_claw.jpeg" alt="disassembled_claw" width="200" height="200">
-  <img src="readme_images/upside_down_cart.jpeg" alt="upside_down_cart" width="240" height="200">
-</p>
-Our frame was designed to be disassembled and reassembled in a short time and take up as little space as possible that it could be transported easily. Aluminium was also used to make the structure lighter, but at the same time very durable. In particular, the legs of the frame can be folded inward making the entire frame flat, while the trolleys rest on rails and can be removed by disconnecting the cables with quick-release connectors.
-<p float="left">
-  <img src="readme_images/cart_b.jpeg" alt="cart_b" width="170" height="200">
-  <img src="readme_images/driver_boards.jpeg" alt="driver_boards" width="200" height="200">
-</p>
-The electronic part, on the other hand, consists of two separate circuits: one for powering the motors and the other for the signals sent from the MSP432 board to the various peripherals: stepper, servo and HC-06 bluetooth module. The two circuits share the grounding.
-<p float="left">
-  <img src="readme_images/power_supply_circuit.jpeg" alt="power_supply_circuit" width="140" height="150">
-  <img src="readme_images/MSP_connections.jpeg" alt="MSP_connections" width="140" height="150">
-  <img src="readme_images/cart_a_dx.jpeg" alt="cart_a_dx" width="140" height="150">
-</p>
-Each stepper motor is connected to its ULN2003 driver that allows it to interface with the MSP board. Specifically, this driver has 6 connections: 5V and GND from the power supply and 4 input pins to control its motion.
+  <p float="left">
+    <img src="readme_images/folded_frame.jpeg" alt="folded_frame" width="140" height="200">
+    <img src="readme_images/disassembled_claw.jpeg" alt="disassembled_claw" width="200" height="200">
+    <img src="readme_images/upside_down_cart.jpeg" alt="upside_down_cart" width="240" height="200">
+  </p>
+  Our frame was designed to be disassembled and reassembled in a short time and take up as little space as possible that it could be transported easily. Aluminium was also used to make the structure lighter, but at the same time very durable. In particular, the legs of the frame can be folded inward making the entire frame flat, while the trolleys rest on rails and can be removed by disconnecting the cables with quick-release connectors.
+  <p float="left">
+    <img src="readme_images/cart_b.jpeg" alt="cart_b" width="180" height="200">
+    <img src="readme_images/driver_boards.jpeg" alt="driver_boards" width="200" height="200">
+  </p>
+  The electronic part, on the other hand, consists of two separate circuits: one for powering the motors and the other for the signals sent from the MSP432 board to the various peripherals: stepper, servo and HC-06 bluetooth module. The two circuits share the grounding.
+  <p float="left">
+    <img src="readme_images/power_supply_circuit.jpeg" alt="power_supply_circuit" width="140" height="150">
+    <img src="readme_images/MSP_connections.jpeg" alt="MSP_connections" width="140" height="150">
+    <img src="readme_images/cart_a_dx.jpeg" alt="cart_a_dx" width="140" height="150">
+  </p>
+  Each stepper motor is connected to its ULN2003 driver that allows it to interface with the MSP board. Specifically, this driver has 6 connections: 5V and GND from the power supply and 4 input pins to control its motion.
 
-The servo, on the other hand, is controlled by PWM so it is connected to the power supply with the 5V and GND pins and to the board with only one input pin. 2. Connect the various components as follows:
+The servo, on the other hand, is controlled by PWM so it is connected to the power supply with the 5V and GND pins and to the board with only one input pin.
 
-2. Connect the **BoosterPack MKII** to the **MSP432P401R Launchpad**.
+</div>
+
+2. Connect the **BoosterPack MKII** to the hand-held **MSP432P401R Launchpad**.
 3. Bluetooth setup
-
-- **HC-05** Configuration
-  - Send it the following AT commands:
-    - `AT+ROLE=1`
-    - `AT+CMODE=1`
-    - `AT+UART=9600,0,0`
-    - `AT+PSWD=1234`
-  - Connect it to the hand-held controller.
-    - Connect the HC-05 to a GND and a 5V pins of the board.
-    - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
-- **HC-06** Configuration:
-
-  - Send it the following AT commands:
-    - `AT+BAUD4`
-    - `AT+PIN1234`
-  - Connect it to the machine.
-    - Connect the HC-06 to a GND and a 5V pins of the board.
-    - Connect the TXD wire to the PIN 3.2 and the RXD wire to the PIN 3.3 of the board.
-
-- **STEPPER MOTOR SETUP**
-
-  - Connect each motor input to the MSP according to the pin mapping specified in the [config.h](./source\motors\claw_machine_driver\config.h) file.
-
-- **CLAW SETUP**
-  - Once the claw is printed and assembled, connect the servo to the power supply and the board on pin 5.7. You may need to change the servo's opening and closing bounds based on how the assembly was done. This can be done by changing the `SERVO_MIN_POSITION` and `SERVO_MAX_POSITION` parameters within the [config.h](./source\motors\claw_machine_driver\config.h) file.
+   - **HC-05** Configuration
+     - Send it the following AT commands:
+       - `AT+ROLE=1`
+       - `AT+CMODE=1`
+       - `AT+UART=9600,0,0`
+       - `AT+PSWD=1234`
+     - Connect it to the hand-held controller.
+       - Connect the HC-05 to a GND and a 5V pins of the board.
+       - Connect the TXD wire to the pin 3.2 and the RXD wire to the pin 3.3 of the board.
+   - **HC-06** Configuration:
+     - Send it the following AT commands:
+       - `AT+BAUD4`
+       - `AT+PIN1234`
+     - Connect it to the machine.
+       - Connect the HC-06 to a GND and a 5V pins of the board.
+       - Connect the TXD wire to the pin 3.2 and the RXD wire to the pin 3.3 of the board.
+4. Stepper motor setup
+   - Connect each motor input to the MSP according to the pin mapping specified in the [config.h](./source\motors\claw_machine_driver\config.h) file.
+5. Claw setup
+   - Print and assemble the claw, click [here](https://www.thingiverse.com/thing:4826548#Summary) for instructions.
+   - Connect the servo to the power supply and the board on pin 5.7.
+     - You may need to change the servo's opening and closing bounds based on how the assembly was done.
+     - This can be done by changing the `SERVO_MIN_POSITION` and `SERVO_MAX_POSITION` parameters within the [config.h](./source\motors\claw_machine_driver\config.h) file.
 
 ### Setting up the software
 
