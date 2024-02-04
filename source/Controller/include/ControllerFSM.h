@@ -1,9 +1,11 @@
 #ifndef CONTROLLER_FSM_H
 #define CONTROLLER_FSM_H
 
-#include <Controller/include/ControllerSetup.h>
-#include <Controller/include/InterruptHandler.h>
-#include <Graphics/default_screens.h>
+#include "ControllerSetup.h"
+#include "InterruptHandler.h"
+#include "BlueTooth/BluetoothLibrary/BlueLib.h"
+#include "BlueTooth/BluetoothLibrary/BitOperations.h"
+#include "Graphics/default_screens.h"
 
 #define SLOW 7
 #define FAST 15
@@ -29,6 +31,9 @@ typedef enum {
     SW2_PRESSED,
     SW3_PRESSED,
 } Event_t;
+
+void stopCartMovements();
+void stopGripperMovements();
 
 void fn_INIT_MODE();
 void fn_MANUAL_MODE();

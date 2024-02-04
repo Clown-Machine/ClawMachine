@@ -1,4 +1,4 @@
-#include <Controller/include/ControllerSetup.h>
+#include "include/ControllerSetup.h"
 
 const Timer_A_ContinuousModeConfig continuousModeConfig =
 {
@@ -20,7 +20,7 @@ void hwInit(){
 
     /* Initializes Clock System */
     
-    CS_setDCOCenteredFrequency(CS_DCO_FREQUENCY_48);
+    CS_setDCOCenteredFrequency(CS_DCO_FREQUENCY_24);
     CS_setReferenceOscillatorFrequency(CS_REFO_128KHZ);
     CS_initClockSignal(CS_MCLK, CS_DCOCLK_SELECT, CS_CLOCK_DIVIDER_1);
     CS_initClockSignal(CS_HSMCLK, CS_DCOCLK_SELECT, CS_CLOCK_DIVIDER_1);
@@ -59,7 +59,6 @@ void joystickInit(){
 
     /* Enabling Interrupts */
     Interrupt_enableInterrupt(INT_ADC14);
-    Interrupt_enableMaster(); // TODO: put this in main or in init general function
 
     /* Setting up the sample timer to automatically step through the sequence
      * convert.
@@ -90,12 +89,20 @@ void buttonInit(){
     Interrupt_enableInterrupt(INT_PORT4);
 }
 
-void ledInit(){
-    /* configure P2.0, P2.1 and P2.2 as GPIO - output */
-    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0);
-    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN1);
-    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN2);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN0);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN1);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN2);
+//void ledInit(){
+//    /* configure P2.0, P2.1 and P2.2 as GPIO - output */
+//    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0);
+//    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN1);
+//    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN2);
+//    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN0);
+//    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN1);
+//    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN2);
+//}
+
+void controllerInit(){
+    hwInit();
+    timerInit();
+    buttonInit();
+    joystickInit();
+    Interrupt_enableMaster();
 }

@@ -1,7 +1,7 @@
 #ifndef _INTERRUPT_H_
 #define _INTERRUPT_H_
 
-#include <Controller/include/ControllerFSM.h>
+#include "ControllerFSM.h"
 #include <ti/devices/msp432p4xx/inc/msp.h>
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include <ti/devices/msp432p4xx/driverlib/adc14.h>

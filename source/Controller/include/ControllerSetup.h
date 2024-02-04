@@ -6,18 +6,12 @@
 #include <ti/devices/msp432p4xx/driverlib/adc14.h>
 #include <stdio.h>
 
-
-
-/*
-void Horizontal_setMessage();
-void Vertical_setMessage();
-*/
+// void ledInit();
 
 void hwInit();
-void ledInit();
 void timerInit();
 void joystickInit();
 void buttonInit();
-
+void controllerInit();
 
 #endif

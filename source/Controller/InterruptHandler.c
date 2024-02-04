@@ -1,7 +1,7 @@
-#include <Controller/include/InterruptHandler.h>
+#include "include/InterruptHandler.h"
 #include "msp.h"
 
-uint16_t resultsBuffer[2] = {0, 0};
+uint16_t resultsBuffer[2] = {8000, 8000};
 extern Event_t event;
 
 // joystick
@@ -9,7 +9,6 @@ void ADC14_IRQHandler()
 {
     uint64_t status;
     status = ADC14_getEnabledInterruptStatus();
-    ADC14_clearInterruptFlag(status);
 
     if(status & ADC_INT1)
     {
@@ -17,6 +16,7 @@ void ADC14_IRQHandler()
         resultsBuffer[0] = ADC14_getResult(ADC_MEM0);
         resultsBuffer[1] = ADC14_getResult(ADC_MEM1);
     }
+    ADC14_clearInterruptFlag(status);
 }
 
 // button 1
@@ -24,13 +24,13 @@ void PORT5_IRQHandler(){
     uint32_t status;
     //uint32_t i = 0;
     status = GPIO_getEnabledInterruptStatus(GPIO_PORT_P5);
-    GPIO_clearInterruptFlag(GPIO_PORT_P5, status);
 
     if(status & GPIO_PIN1)
     {
         event = SW1_PRESSED;
         printf("SW1_PRESSED\n");
     }
+    GPIO_clearInterruptFlag(GPIO_PORT_P5, status);
 }
 
 // button 3
@@ -38,7 +38,6 @@ void PORT4_IRQHandler(){
     uint32_t status;
     //uint32_t i = 0;
     status = GPIO_getEnabledInterruptStatus(GPIO_PORT_P4);
-    GPIO_clearInterruptFlag(GPIO_PORT_P4, status);
 
     if(status & GPIO_PIN1)
     {
@@ -48,6 +47,7 @@ void PORT4_IRQHandler(){
         event = SW3_PRESSED;
         printf("SW3_PRESSED\n");
     }
+    GPIO_clearInterruptFlag(GPIO_PORT_P4, status);
 }
 
 // button 2
@@ -55,7 +55,6 @@ void PORT3_IRQHandler(){
     uint32_t status;
     //uint32_t i = 0;
     status = GPIO_getEnabledInterruptStatus(GPIO_PORT_P3);
-    GPIO_clearInterruptFlag(GPIO_PORT_P3, status);
 
     if(status & GPIO_PIN5)
     {
@@ -65,6 +64,7 @@ void PORT3_IRQHandler(){
         event = SW2_PRESSED;
         printf("SW2_PRESSED\n");
     }
+    GPIO_clearInterruptFlag(GPIO_PORT_P3, status);
 }
 
 void TA1_N_IRQHandler(){
