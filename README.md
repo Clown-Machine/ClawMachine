@@ -61,7 +61,7 @@ To use this project, you will need the following hardware:
 ├── SupportsSTL                      # STLs to print for the supports of the boards
 ├── readme_images
 │    └── images                      # Images used in the README
-├── presentation.pdf                 # Slide presentation
+├── presentation.pdf                 # A copy of the presentation slides
 └── source
      ├── Controller                  # Everything that is on the controller side
      │    ├── bluetooth              # Manages bluetooth connection and its tests
