@@ -74,8 +74,8 @@ To use this project, you will need the following hardware:
      │    └── main.c               # Main source code
      └── motors                    # Manages what is on the machine side
           ├── bluetooth            # Manages bluetooth connection
-          ├── claw_machine_driver  # Manages the motors
-          │    └── hardware        # Libraries to control the motors
+          ├── claw_machine_driver  # Manages claw machine movements
+          │    └── hardware        # Hardware-level libraries to control the motors
           ├── Debug                # Compiled files
           ├── targetConfigsv
           └── main.c               # Main source code
