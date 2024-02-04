@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS
+CG_TOOL_ROOT := E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -136,40 +136,27 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-motors.out \
+ClawMachine_MotorDriver.out \
 
 EXE_OUTPUTS__QUOTED += \
-"motors.out" \
-
-BIN_OUTPUTS += \
-motors.hex \
-
-BIN_OUTPUTS__QUOTED += \
-"motors.hex" \
+"ClawMachine_MotorDriver.out" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "motors.out"
+	@$(MAKE) --no-print-directory -Onone "ClawMachine_MotorDriver.out"
 
 # Tool invocations
-motors.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+ClawMachine_MotorDriver.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"C:/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=all --define=__MSP432P401R__ --define=ccs -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"motors.map" --heap_size=1024 --stack_size=512 -i"C:/CCS/ccs/ccs_base/arm/include" -i"C:/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/lib" -i"C:/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="motors_linkInfo.xml" --rom_model -o "motors.out" $(ORDERED_OBJS)
+	"E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=all --define=__MSP432P401R__ --define=ccs -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"ClawMachine_MotorDriver.map" --heap_size=1024 --stack_size=512 -i"E:/IDEs/CodeComposerStudio/ccs/ccs_base/arm/include" -i"E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="ClawMachine_MotorDriver_linkInfo.xml" --rom_model -o "ClawMachine_MotorDriver.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
-	@echo ' '
-
-motors.hex: $(EXE_OUTPUTS)
-	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
-	@echo 'Invoking: ARM Hex Utility'
-	"C:/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.0.LTS/bin/armhex" --memwidth=8 --romwidth=8 -o "motors.hex" $(EXE_OUTPUTS__QUOTED)
-	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
+	-$(RM) $(EXE_OUTPUTS__QUOTED)
 	-$(RM) "main.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" "bluetooth\bluetooth_lib\bit_operations.obj" "bluetooth\bluetooth_lib\blue_lib.obj" "claw_machine_driver\cart.obj" "claw_machine_driver\claw_machine.obj" "claw_machine_driver\config.obj" "claw_machine_driver\hardware\servo.obj" "claw_machine_driver\hardware\stepper.obj" 
 	-$(RM) "main.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" "bluetooth\bluetooth_lib\bit_operations.d" "bluetooth\bluetooth_lib\blue_lib.d" "claw_machine_driver\cart.d" "claw_machine_driver\claw_machine.d" "claw_machine_driver\config.d" "claw_machine_driver\hardware\servo.d" "claw_machine_driver\hardware\stepper.d" 
 	-@echo 'Finished clean'

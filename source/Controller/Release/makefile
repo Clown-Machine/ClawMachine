@@ -4,19 +4,32 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccs1250/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS
+CG_TOOL_ROOT := E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./ControllerFSM.obj" \
+"./ControllerSetup.obj" \
+"./InterruptHandler.obj" \
 "./main.obj" \
 "./startup_msp432p401r_ccs.obj" \
 "./system_msp432p401r.obj" \
+"./Graphics/LcdDriver/Crystalfontz128x128_ST7735.obj" \
+"./Graphics/LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj" \
+"./Graphics/default_screens.obj" \
+"./Graphics/screen_manager.obj" \
+"./Graphics/images/bluetooth.obj" \
+"./Graphics/images/claw.obj" \
+"./Graphics/images/thumbsup.obj" \
+"./bluetooth/BluetoothLibrary/BitOperations.obj" \
+"./bluetooth/BluetoothLibrary/BlueLib.obj" \
+"./bluetooth/TestMainMaster.obj" \
+"./bluetooth/TestMainSlave.obj" \
 "../msp432p401r.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
--l"C:/Users/angel/Desktop/EMBEDDED SYSTEMS/simplelink_msp432p4_sdk_3_40_01_02/source/ti/devices/msp432p4xx/driverlib/ccs/msp432p4xx_driverlib.lib" \
 
 -include ../makefile.init
 
@@ -26,7 +39,17 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include Graphics/LcdDriver/subdir_vars.mk
+-include Graphics/subdir_vars.mk
+-include Graphics/images/subdir_vars.mk
+-include bluetooth/BluetoothLibrary/subdir_vars.mk
+-include bluetooth/subdir_vars.mk
 -include subdir_rules.mk
+-include Graphics/LcdDriver/subdir_rules.mk
+-include Graphics/subdir_rules.mk
+-include Graphics/images/subdir_rules.mk
+-include bluetooth/BluetoothLibrary/subdir_rules.mk
+-include bluetooth/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -123,28 +146,29 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Controller.out \
+controller_test.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Controller.out" \
+"controller_test.out" \
 
 
 # All Target
-all: Controller.out
+all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+	@$(MAKE) --no-print-directory -Onone "controller_test.out"
 
 # Tool invocations
-Controller.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+controller_test.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
-	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs1250/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O2 --advice:power=all --define=__MSP432P401R__ --define=ccs --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Controller.map" --heap_size=1024 --stack_size=512 -i"C:/ti/ccs1250/ccs/ccs_base/arm/include" -i"C:/ti/ccs1250/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1250/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Controller_linkInfo.xml" --rom_model -o "Controller.out" $(ORDERED_OBJS)
+	@echo 'Invoking: ARM Linker'
+	"E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O2 --advice:power=all --define=__MSP432P401R__ --define=ccs --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"controller_test.map" --heap_size=1024 --stack_size=512 -i"E:/IDEs/CodeComposerStudio/ccs/ccs_base/arm/include" -i"E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"E:/IDEs/CodeComposerStudio/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="controller_test_linkInfo.xml" --rom_model -o "controller_test.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" 
-	-$(RM) "main.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" 
+	-$(RM) "ControllerFSM.obj" "ControllerSetup.obj" "InterruptHandler.obj" "main.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" "Graphics\LcdDriver\Crystalfontz128x128_ST7735.obj" "Graphics\LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj" "Graphics\default_screens.obj" "Graphics\screen_manager.obj" "Graphics\images\bluetooth.obj" "Graphics\images\claw.obj" "Graphics\images\thumbsup.obj" "bluetooth\BluetoothLibrary\BitOperations.obj" "bluetooth\BluetoothLibrary\BlueLib.obj" "bluetooth\TestMainMaster.obj" "bluetooth\TestMainSlave.obj" 
+	-$(RM) "ControllerFSM.d" "ControllerSetup.d" "InterruptHandler.d" "main.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" "Graphics\LcdDriver\Crystalfontz128x128_ST7735.d" "Graphics\LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.d" "Graphics\default_screens.d" "Graphics\screen_manager.d" "Graphics\images\bluetooth.d" "Graphics\images\claw.d" "Graphics\images\thumbsup.d" "bluetooth\BluetoothLibrary\BitOperations.d" "bluetooth\BluetoothLibrary\BlueLib.d" "bluetooth\TestMainMaster.d" "bluetooth\TestMainSlave.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
