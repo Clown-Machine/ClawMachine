@@ -27,6 +27,7 @@ int main(void)
     while (1)
     {
         // PCM_gotoLPM0();
+        // controller state machine
         Controller();
     }
 }

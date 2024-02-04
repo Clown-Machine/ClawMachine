@@ -1,10 +1,13 @@
 #include "include/ControllerFSM.h"
 #define DEBUG_CONTROLLER 0
-/// @brief Finite state machine for the controller
-/// @details The controller has:
-///             4 modes: INIT_MODE, MANUAL_MODE, AUTOMATIC_MODE, SELECT_MODE
-///             3 movements: HORIZONTAL_MODE, VERTICAL_MODE, SCREEN_MODE
-///             3 events: SW_NONE, SW1_PRESSED, SW2_PRESSED, SW3_PRESSED
+/// 2 Finite state machine of the controller:
+///     1. ModeMachine_t: handles the states of the controller
+///     2. MovementMachine_t: handles the movement of the cart and the gripper
+
+/// This code handles the states of the controller and the movement of the cart:
+///     4 modes: INIT_MODE, MANUAL_MODE, AUTOMATIC_MODE, SELECT_MODE
+///     3 movements: HORIZONTAL_MODE, VERTICAL_MODE, SCREEN_MODE
+///     3 events: SW_NONE, SW1_PRESSED, SW2_PRESSED, SW3_PRESSED
 
 Mode_t current_mode = INIT_MODE;
 Movement_t current_movement = SCREEN_MODE;
@@ -25,6 +28,7 @@ MovementMachine_t mfsm[] = { //movement finite state machine
         { VERTICAL_MODE, fn_VERTICAL_MODE },
         { SCREEN_MODE, fn_SCREEN_MODE } };
 
+// Initializazion of the controller
 void fn_INIT_MODE()
 {
     if (event == SW1_PRESSED)
@@ -39,6 +43,7 @@ void fn_INIT_MODE()
     }
 }
 
+// Manual mode of the controller - move the cart and the gripper manually using the joystick
 void fn_MANUAL_MODE()
 {
     if (event == SW1_PRESSED)
