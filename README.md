@@ -94,12 +94,14 @@ To use this project, you will need the following hardware:
 git clone https://github.com/Clown-Machine/ClawMachine.git
 ```
 
+2. put the right project on the right board
+
 2. Open the project in **Code Composer Studio**.
 3. Go to: _Project → Properties → Build → Arm Compiler → Include Options_ and add the _source_ directory located in _simplelink_msp432p4_sdk_3_40_01_02/_
 4. Go to: _Project → Properties → Build → Arm Linker → File Search Path_ and add:
    - _msp432p4xx_driverlib.lib_ directory located in _[..]/source/ti/devices/msp432p4xx/driverlib/ccs/_
    - _grlib.a_ located in _[..]/source/ti/grlib/lib/ccs/m4f/_
-5. Uart driver lib TODO
+   
 6. Build and run the project. The Launchpad should now be displaying the graphics.
 
 # How to burn(?)
@@ -125,6 +127,9 @@ https://electronics.stackexchange.com/questions/188107/burn-code-using-code-comp
        - Automatic:
          - The positions you reached and saved previously in Manual movement mode will appear on the screen. You can now select the position you want by moving up and down with the joystick and by clicking Button 2. The claw machine will automatically get into the desired position. (Operation not implemented yet)
 4. Have fun!
+
+5. Testing Note:
+  - In order to test the proper communication between controller and machine before playing with it, it is possible to compile the project excluding the main.c file and including in its place the file TestMainSlave.c (on the machine) and the file TestMainMaster.c (on the controller), found in the "Testing" directory inside "BlueTooth". Once the test is complete, exclude once again the testing files and include main.c.
 
 <p align="center">
   <img src="readme_assets/ClawMachineFSM.png" width="474" height="300" alt="FSM1">
