@@ -38,8 +38,8 @@ To use this project, you will need the following hardware:
 - 1x Microservo for moving the claw
 - 5x 28BYJ-48 stepper motors
 - 5x ULN2003 stepper motors' driver
-- 5x [Motor driver supports](<./readme_images/STLs/motor_driver_support v2.stl>)
-- [Support for the MSP board](./readme_images/STLs/MPS432_support.stl)
+- 5x [Motor driver supports](./SupportsSTLs\motor_driver_support.stl)
+- [Support for the MSP board](./SupportsSTLs\MPS432_support.stl)
 - [Claw Grabber](https://www.thingiverse.com/thing:4826548/files)
 - Jumper wires
 - A rope to connect to the claw
@@ -61,7 +61,7 @@ To use this project, you will need the following hardware:
 ├── SupportsSTL                      # STLs to print for the supports of the boards
 ├── readme_images
 │    └── images                      # Images used in the README
-├── presentation.pdf                 # A copy of the presentation slides
+├── presentation.pdf                 # Presentation's slides
 └── source
      ├── Controller                  # Everything that is on the controller side
      │    ├── bluetooth              # Manages bluetooth connection and its tests
@@ -93,20 +93,20 @@ To use this project, you will need the following hardware:
    Since the chassis' dimensions do not directly affect the software, it can be built following the weight, transportability and strength requirements of the specific project. Since these changes may require some software changes, we will show how we built ours:
 
   <p float="left">
-    <img src="readme_images/folded_frame.jpeg" alt="folded_frame" width="140" height="200">
-    <img src="readme_images/disassembled_claw.jpeg" alt="disassembled_claw" width="200" height="200">
+    <img src="readme_images/folded_frame.jpeg" alt="folded_frame" height="200">
+    <img src="readme_images/disassembled_claw.jpeg" alt="disassembled_claw" width="190" height="200">
     <img src="readme_images/upside_down_cart.jpeg" alt="upside_down_cart" width="240" height="200">
   </p>
   Our frame was designed to be disassembled and reassembled in a short time and take up as little space as possible that it could be transported easily. Aluminium was also used to make the structure lighter, but at the same time very durable. In particular, the legs of the frame can be folded inward making the entire frame flat, while the trolleys rest on rails and can be removed by disconnecting the cables with quick-release connectors.
   <p float="left">
-    <img src="readme_images/cart_b.jpeg" alt="cart_b" width="180" height="200">
-    <img src="readme_images/driver_boards.jpeg" alt="driver_boards" width="200" height="200">
+    <img src="readme_images/cart_b.jpeg" alt="cart_b" height="200">
+    <img src="readme_images/driver_boards.jpeg" alt="driver_boards" height="200">
   </p>
   The electronic part, on the other hand, consists of two separate circuits: one for powering the motors and the other for the signals sent from the MSP432 board to the various peripherals: stepper, servo and HC-06 bluetooth module. The two circuits share the grounding.
   <p float="left">
-    <img src="readme_images/power_supply_circuit.jpeg" alt="power_supply_circuit" width="140" height="150">
-    <img src="readme_images/MSP_connections.jpeg" alt="MSP_connections" width="140" height="150">
-    <img src="readme_images/cart_a_dx.jpeg" alt="cart_a_dx" width="140" height="150">
+    <img src="readme_images/power_supply_circuit.jpeg" alt="power_supply_circuit" height="150">
+    <img src="readme_images/MSP_connections.jpeg" alt="MSP_connections" height="150">
+    <img src="readme_images/cart_a_dx.jpeg" alt="cart_a_dx" height="150">
   </p>
   Each stepper motor is connected to its ULN2003 driver that allows it to interface with the MSP board. Specifically, this driver has 6 connections: 5V and GND from the power supply and 4 input pins to control its motion.
 
@@ -189,10 +189,10 @@ Testing Note:
 - In order to test the proper communication between controller and machine before playing with it, it is possible to compile the project excluding from the build the [main.c](./source\Controller\main.c) file and including in its place the file [TestMainSlave.c](./source\Controller\bluetooth\TestMainSlave.c) (on the machine) and the file [TestMainMaster.c](./source\Controller\bluetooth\TestMainMaster.c) (on the controller). Once the test is complete, exclude the testing files and re-include [main.c](./source\Controller\main.c).
 
 <p align="center">
-  <img src="readme_images/ClawMachineFSM.png" width="474" height="300" alt="FSM1">
+  <img src="readme_images/ClawMachineFSM.png" width="474" alt="FSM1">
 </p>
 <p align="center">
-  <img src="readme_images/ClawMachine_MovementFSM.png" width="536" height="333" alt="MovementeFSM">
+  <img src="readme_images/ClawMachine_MovementFSM.png" width="536" alt="MovementeFSM">
 </p>
 
 # Link to powerpoint and Youtube video
