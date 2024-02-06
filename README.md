@@ -197,7 +197,7 @@ Testing Note:
 
 # Link to powerpoint and Youtube video
 
-- Youtube [video](https://www.youtube.com/watch?v=7IeV_nqWg8k)
+- Youtube [video](https://youtu.be/jCsASMP_P0s)
 - PowerPoint [slides](https://docs.google.com/presentation/d/1NUo6HDtRyt_ihvcuS94CyRr47OZp8XRaCx5JYKxsm4A/edit?usp=sharing)
 
 # Team members
